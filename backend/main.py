@@ -121,3 +121,17 @@ def get_order(order_id: int):
         "order_id": order_id,
         "order": order
     }
+
+
+
+@app.get("/debug/config")
+def debug_config():
+    return {
+        "warning": "This endpoint is intentionally vulnerable.",
+        "issue": "Sensitive configuration data is exposed.",
+        "environment": "development",
+        "database_url": "postgresql://admin:SuperSecret123@localhost:5432/shieldapi",
+        "api_key": "sk_test_1234567890abcdef",
+        "jwt_secret": "very_secret_jwt_key",
+        "admin_email": "admin@shieldapi.local"
+    }

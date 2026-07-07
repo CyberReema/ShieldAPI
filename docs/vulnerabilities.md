@@ -129,3 +129,62 @@ Later, this endpoint should check:
 - The logged-in user's identity
 - The owner of the order
 - Whether the user has permission to view that order
+
+
+
+---
+
+## Vulnerability 3: Sensitive Data Exposure
+
+### Endpoint
+
+```http
+GET /debug/config
+```
+
+### Description
+
+The `/debug/config` endpoint exposes sensitive application configuration data.
+
+This includes fake examples of secrets such as:
+
+- Database connection URL
+- API key
+- JWT secret
+- Admin email
+
+### Why This Is Dangerous
+
+Debug and configuration endpoints should never be publicly accessible.
+
+If real secrets were exposed, an attacker could potentially:
+
+- Access the database
+- Abuse API keys
+- Forge authentication tokens
+- Learn internal system details
+
+### Example Response
+
+```json
+{
+  "warning": "This endpoint is intentionally vulnerable.",
+  "issue": "Sensitive configuration data is exposed.",
+  "environment": "development",
+  "database_url": "postgresql://admin:SuperSecret123@localhost:5432/shieldapi",
+  "api_key": "sk_test_1234567890abcdef",
+  "jwt_secret": "very_secret_jwt_key",
+  "admin_email": "admin@shieldapi.local"
+}
+```
+
+### Security Category
+
+Sensitive Data Exposure  
+Security Misconfiguration
+
+### Future Fix
+
+Later, this endpoint should be removed or protected.
+
+Secrets should be stored in environment variables and should never be returned in API responses.
