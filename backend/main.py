@@ -24,6 +24,27 @@ fake_users = {
     }
 }
 
+fake_orders = {
+    1001: {
+        "owner": "reema",
+        "item": "Laptop",
+        "price": 4500,
+        "status": "shipped"
+    },
+    1002: {
+        "owner": "admin",
+        "item": "Security Server",
+        "price": 12000,
+        "status": "processing"
+    },
+    1003: {
+        "owner": "guest",
+        "item": "USB Drive",
+        "price": 80,
+        "status": "delivered"
+    }
+}
+
 
 @app.get("/")
 def home():
@@ -82,4 +103,21 @@ def get_all_users():
                 "role": "user"
             }
         ]
+    }
+
+@app.get("/orders/{order_id}")
+def get_order(order_id: int):
+    order = fake_orders.get(order_id)
+
+    if not order:
+        return {
+            "success": False,
+            "message": "Order not found"
+        }
+
+    return {
+        "warning": "This endpoint is intentionally vulnerable.",
+        "issue": "Order data is exposed without checking ownership.",
+        "order_id": order_id,
+        "order": order
     }
