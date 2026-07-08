@@ -148,6 +148,14 @@ reports/scan-report.md
 
 ## Vulnerabilities Demonstrated
 
+### OWASP API Security Top 10 Mapping
+
+| Project Finding | Endpoint | OWASP API Security Top 10 2023 Mapping |
+|---|---|---|
+| IDOR / BOLA | `/orders/{order_id}` | API1:2023 Broken Object Level Authorization |
+| Broken Access Control | `/admin/users` | API5:2023 Broken Function Level Authorization |
+| Sensitive Data Exposure | `/debug/config` | API8:2023 Security Misconfiguration |
+
 ### 1. Broken Access Control
 
 The `/admin/users` endpoint exposes admin data without checking if the user is authenticated or authorized.
