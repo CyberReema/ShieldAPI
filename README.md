@@ -168,7 +168,45 @@ The `/orders/{order_id}` endpoint allows access to different orders by changing 
 
 The `/debug/config` endpoint exposes sensitive configuration values such as database URLs, API keys, and JWT secrets.
 
+
+
 ---
+## Remediation Validation
+
+ShieldAPI does not only demonstrate vulnerable API behavior. It also includes secure endpoint versions that show how each issue can be fixed and validated.
+
+The scanner tests two categories:
+
+1. **Vulnerable endpoints**
+   These endpoints intentionally expose security issues so the scanner can detect them.
+
+2. **Secure endpoints**
+   These endpoints apply authentication, role-based authorization, object ownership checks, and safer configuration handling.
+
+| Vulnerability           | Vulnerable Endpoint  | Secure Endpoint             | Security Control                                      |
+| ----------------------- | -------------------- | --------------------------- | ----------------------------------------------------- |
+| Broken Access Control   | `/admin/users`       | `/secure/admin/users`       | Requires authentication and admin role                |
+| IDOR / BOLA             | `/orders/{order_id}` | `/secure/orders/{order_id}` | Verifies object ownership before returning data       |
+| Sensitive Data Exposure | `/debug/config`      | `/secure/debug/config`      | Prevents secrets from being returned in API responses |
+
+The scanner validates that the vulnerable endpoints are detected and that the secure endpoints correctly block unauthorized access.
+
+Example secure validation results:
+
+```text
+[PASS] Secure admin endpoint blocks unauthenticated access
+[PASS] Secure admin endpoint blocks normal users
+[PASS] Secure admin endpoint allows admin users
+[PASS] Secure order endpoint allows object owner
+[PASS] Secure order endpoint blocks IDOR/BOLA
+[PASS] Secure config endpoint does not expose secrets
+```
+
+This demonstrates the full security workflow:
+
+```text
+Identify vulnerability → Map to OWASP API Top 10 → Recommend remediation → Validate secure implementation
+```
 
 ## Disclaimer
 
