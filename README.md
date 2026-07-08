@@ -108,32 +108,6 @@ Run vulnerable API
 ---
 
 
-## Project Structure
-
-```text
-ShieldAPI/
-│
-├── backend/
-│   └── main.py
-│
-├── scanner/
-│   └── scanner.py
-│
-├── docs/
-│   └── vulnerabilities.md
-│
-├── reports/
-│   └── scan-report.md
-│
-├── requirements.txt
-├── .gitignore
-└── README.md
-```
-
----
-
----
-
 ## Screenshots
 
 ### FastAPI Documentation
