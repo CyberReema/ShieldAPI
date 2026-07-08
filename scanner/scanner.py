@@ -1,8 +1,14 @@
+from datetime import datetime
+from pathlib import Path
+
 import requests
 
 
 BASE_URL = "http://127.0.0.1:8000"
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+REPORTS_DIR = PROJECT_ROOT / "reports"
+REPORT_PATH = REPORTS_DIR / "scan-report.md"
 
 findings = []
 
@@ -103,11 +109,46 @@ def print_report():
     print("\nScan completed.")
 
 
+def save_markdown_report():
+    REPORTS_DIR.mkdir(exist_ok=True)
+
+    report_lines = [
+        "# ShieldAPI Security Scanner Report",
+        "",
+        f"Generated at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+        "",
+        "## Summary",
+        "",
+        f"Total findings: {len(findings)}",
+        ""
+    ]
+
+    if not findings:
+        report_lines.append("No vulnerabilities detected.")
+    else:
+        for index, finding in enumerate(findings, start=1):
+            report_lines.extend([
+                f"## Finding {index}: {finding['title']}",
+                "",
+                f"**Severity:** {finding['severity']}",
+                "",
+                f"**Endpoint:** `{finding['endpoint']}`",
+                "",
+                f"**Description:** {finding['description']}",
+                ""
+            ])
+
+    REPORT_PATH.write_text("\n".join(report_lines), encoding="utf-8")
+
+    print(f"\nMarkdown report saved to: {REPORT_PATH}")
+
+
 def run_scanner():
     check_broken_access_control()
     check_idor_bola()
     check_sensitive_data_exposure()
     print_report()
+    save_markdown_report()
 
 
 if __name__ == "__main__":
