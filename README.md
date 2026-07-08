@@ -167,3 +167,21 @@ The `/debug/config` endpoint exposes sensitive configuration values such as data
 This project is for educational and defensive cybersecurity learning only.
 
 All vulnerabilities are intentionally created in a local lab environment.
+
+
+---
+
+## Skills Demonstrated
+
+This project demonstrates practical skills in:
+
+- API security testing
+- Vulnerability detection
+- Broken Access Control analysis
+- IDOR / BOLA testing
+- Sensitive data exposure detection
+- Python scripting
+- FastAPI backend development
+- Git and GitHub project management
+- Security documentation
+- Markdown report generation
