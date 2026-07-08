@@ -110,13 +110,27 @@ Run vulnerable API
 
 ## Screenshots
 
-### FastAPI Documentation
+### API Documentation
 
-![FastAPI Documentation](screenshots/api-docs.png)
+![API Documentation](screenshots/api-docs.png)
 
-### Security Scanner Report
+### Scanner Report
 
-![Security Scanner Report](screenshots/scanner-report.png)
+![Scanner Report](screenshots/scanner-report.png)
+
+### Vulnerable IDOR / BOLA Endpoint
+
+This screenshot shows that changing the order ID exposes another user's order data.
+
+![Vulnerable IDOR / BOLA Endpoint](screenshots/vulnerable-order-idor.png)
+
+### Secure Admin Endpoint Blocking Unauthorized Access
+
+This screenshot shows that the secure admin endpoint blocks requests without a valid Authorization header.
+
+![Secure Admin Blocked](screenshots/secure-admin-blocked.png)
+
+
 
 ## How to Run the Project
 
