@@ -85,6 +85,18 @@ ShieldAPI/
 
 ---
 
+---
+
+## Screenshots
+
+### FastAPI Documentation
+
+![FastAPI Documentation](screenshots/api-docs.png)
+
+### Security Scanner Report
+
+![Security Scanner Report](screenshots/scanner-report.png)
+
 ## How to Run the Project
 
 ### 1. Create and activate a virtual environment
