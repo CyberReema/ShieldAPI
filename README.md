@@ -50,6 +50,52 @@ reports/scan-report.md
 
 ---
 
+
+## Project Architecture
+
+ShieldAPI is divided into four main parts:
+
+```text
+ShieldAPI/
+│
+├── backend/
+│   └── main.py
+│       FastAPI vulnerable API lab with intentionally insecure endpoints
+│       and secure fixed endpoint versions.
+│
+├── scanner/
+│   └── scanner.py
+│       Python security scanner that detects vulnerabilities,
+│       maps them to OWASP API Security Top 10, and validates fixes.
+│
+├── reports/
+│   └── scan-report.md
+│       Generated Markdown security report with findings, evidence,
+│       severity levels, remediation advice, and secure validation results.
+│
+├── docs/
+│   └── vulnerabilities.md
+│       Educational documentation explaining each vulnerability,
+│       impact, OWASP mapping, and remediation.
+│
+└── screenshots/
+    ├── api-docs.png
+    └── scanner-report.png
+        Screenshots used in the README to demonstrate the project.
+```
+
+## Project Workflow
+
+```text
+Run vulnerable API
+→ Scan endpoints
+→ Detect vulnerabilities
+→ Map findings to OWASP API Security Top 10
+→ Generate security report
+→ Validate secure fixes
+```
+
+
 ## Tech Stack
 
 - Python
@@ -60,6 +106,7 @@ reports/scan-report.md
 - Markdown
 
 ---
+
 
 ## Project Structure
 
